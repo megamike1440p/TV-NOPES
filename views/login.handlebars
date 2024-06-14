@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="mt-6 row justify-content-center">
+    <div class="col-md-7">
+      <div class="row d-flex justify-content-center mt-5">
+        <div class="col-md-4 card card-body">
+          <div class="card-body-inner">
+            <h5 class="card-title">Please log in</h5>
+            <form action="/login" method="POST">
+              <div class="mb-3">
+                <label for="username" class="visually-hidden">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  placeholder="Username"
+                  required=""
+                  autofocus=""
+                  autocomplete="off"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="visually-hidden">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="Password"
+                  required=""
+                  autocomplete="off"
+                />
+              </div>
+              <div class="mb-3">
+                <button
+                  class="btn btn-lg btn-primary btn-block"
+                  type="submit"
+                >Login</button>
+              </div>
+            </form>
+          </div>
+          <div class="card-body-inner">
+            <h5 class="card-title">Create new user</h5>
+            <form action="/register" method="POST">
+              <div class="mb-3">
+                <label for="username" class="visually-hidden">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="username"
+                  placeholder="Username"
+                  required=""
+                  autofocus=""
+                  autocomplete="off"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="visually-hidden">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  placeholder="Password"
+                  required=""
+                  autocomplete="off"
+                />
+              </div>
+              <div class="mb-3">
+                <button
+                  class="btn btn-lg btn-primary btn-block"
+                  type="submit"
+                >Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

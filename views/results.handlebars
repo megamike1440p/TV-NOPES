@@ -1,0 +1,57 @@
+<h1>Search Results for "{{query}}"</h1>
+<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
+  {{#each shows}}
+  <div class="col mb-4">
+    <div class="show-container">
+      <div class="show-image">
+        <a href="{{this.show.url}}" target="_blank">
+          <div class="show-title mb-2 text-center">{{this.show.name}}</div>
+          <img src="{{this.show.image.medium}}" alt="{{this.show.name}}" class="img-fluid rounded">
+        </a>
+        <div class="show-summary text-center">{{this.show.summary}}</div>
+      </div>
+      <div class="show-button">
+        {{#if this.isInNopeList}}
+        <button class="btn btn-danger" button="{{this.show.id}}" onclick="removeFromNopeList(event)">Remove from Nope List</button>
+        {{else}}
+        <button class="btn btn-primary" button="{{this.show.id}}" onclick="addToNopeList(event)">Add to Nope List</button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+<script>
+    async function addToNopeList(event) {
+      const showId = event.target.getAttribute("button");
+      try {
+        const response = await fetch(`/add/${showId}`, { method: "POST" });
+        if (response.ok) {
+          alert("Show added to Nope List");
+          window.location.reload();
+        } else {
+          alert("Error adding show to Nope List");
+        }
+      } catch (error) {
+        console.error(error);
+        alert("Error adding show to Nope List");
+      }
+    }
+  </script>
+  <script>
+  async function removeFromNopeList(event) {
+    const showId = event.target.getAttribute("button");
+    try {
+      const response = await fetch(`/remove/${showId}`, { method: "DELETE" });
+      if (response.ok) {
+        alert("Show removed from Nope List");
+        location.reload();
+      } else {
+        alert("Error removing show from Nope List");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error removing show from Nope List");
+    }
+  }
+</script>

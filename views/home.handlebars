@@ -1,0 +1,42 @@
+<h1>Welcome to TV Nopes</h1>
+{{#if shows}}
+  <h2 style="color: white;">Your Nope List</h2>
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
+    {{#each shows}}
+      <div class="col mb-4">
+        <div class="show-container">
+          <div class="show-image">
+            <a href="{{url}}" target="_blank">
+              <div class="show-title mb-2 text-center">{{name}}</div>
+              <img src="{{image.medium}}" alt="{{name}}" class="img-fluid rounded">
+            </a>
+            <div class="show-summary text-center">{{summary}}</div>
+          </div>
+          <div class="show-button">
+            <button class="btn btn-danger mt-2" data-show-id="{{id}}" onclick="removeFromNopeList(event)">Remove from Nope List</button>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
+
+<script>
+  async function removeFromNopeList(event) {
+    event.preventDefault();
+    const showId = event.target.getAttribute("data-show-id");
+
+    try {
+      const response = await fetch(`/remove/${showId}`, { method: "DELETE" });
+      if (response.ok) {
+        alert("Show removed from Nope List");
+        window.location.reload(); // Refresh the page to reflect changes
+      } else {
+        alert("Error removing show from Nope List");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error removing show from Nope List");
+    }
+  }
+</script>
